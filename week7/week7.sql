@@ -45,6 +45,19 @@ join genres g on m.movie_id = g.movie_id
 join languages l on m.movie_id= l.movie_id
 where g.genre_name="Drama" and l.language_name="Italian" and m.year between 1990 and 2000;
 
+SELECT m.title, m.year
+FROM movies m
+WHERE m.year BETWEEN 1990 AND 2000
+  AND m.movie_id IN (SELECT movie_id FROM genres WHERE genre_name = 'Drama')
+  AND m.movie_id IN (SELECT movie_id FROM languages WHERE language_name = 'Italian');
 
 
-# 6. Show the Quentin Tarantino films which have more than 500000 votes and produced before 2000.	 
+
+# 6. Show the Quentin Tarantino films which have more than 500000 votes and produced before 2000.
+SELECT m.title, m.year, m.votes
+FROM movies m
+JOIN movie_directors md ON m.movie_id = md.movie_id
+JOIN directors d ON md.director_id = d.director_id
+WHERE d.director_name = 'Quentin Tarantino' 
+  AND m.votes > 500000 
+  AND m.year < 2000;	 

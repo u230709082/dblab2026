@@ -23,7 +23,7 @@ BEGIN
 END $$
 DELIMITER;
 
-select SipperName from Shippers;
+select ShipperName from Shippers;
 SET @order_cnt =0;
 SELECT @order_cnt;
 CALL GetOrderCountByShipper("United Package",@order_cnt);
